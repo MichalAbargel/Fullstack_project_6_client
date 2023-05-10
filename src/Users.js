@@ -1,6 +1,20 @@
-import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 function Users() {
+  const [login, setLogin] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!login) {
+      localStorage.removeItem("user");
+    }
+  }, [login]);
+
+  const handleLogin = () => {
+    setLogin(false);
+    navigate('/login');
+  };
   return (
     <nav>
       <ul>
@@ -16,9 +30,11 @@ function Users() {
         <li>
           <Link to="todos">Todos</Link>
         </li>
-        {/* logout */}
+        <li>
+          <button onClick={handleLogin}>Logout</button>
+        </li>
       </ul>
-      <Outlet/>
+      <Outlet />
     </nav>
   );
 }
