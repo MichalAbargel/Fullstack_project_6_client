@@ -13,6 +13,9 @@ function Users() {
         <li>
           <Link to="albums">Albums</Link>
         </li>
+        <li>
+          <Link to="todos">Todos</Link>
+        </li>
       </ul>
       <Outlet/>
     </nav>
