@@ -16,6 +16,7 @@ function Users() {
         <li>
           <Link to="todos">Todos</Link>
         </li>
+        {/* logout */}
       </ul>
       <Outlet/>
     </nav>
