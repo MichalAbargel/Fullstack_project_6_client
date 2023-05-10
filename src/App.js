@@ -35,7 +35,7 @@ import Users from "./Users";
 import Posts from "./Posts";
 import Todos from "./Todos";
 import Info from "./Info";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
