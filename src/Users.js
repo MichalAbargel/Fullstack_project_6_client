@@ -13,29 +13,31 @@ function Users() {
 
   const handleLogin = () => {
     setLogin(false);
-    navigate('/login');
+    navigate("/login");
   };
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="posts">Posts</Link>
-        </li>
-        <li>
-          <Link to="info">Info</Link>
-        </li>
-        <li>
-          <Link to="albums">Albums</Link>
-        </li>
-        <li>
-          <Link to="todos">Todos</Link>
-        </li>
-        <li>
-          <button onClick={handleLogin}>Logout</button>
-        </li>
-      </ul>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="posts">Posts</Link>
+          </li>
+          <li>
+            <Link to="info">Info</Link>
+          </li>
+          <li>
+            <Link to="albums">Albums</Link>
+          </li>
+          <li>
+            <Link to="todos">Todos</Link>
+          </li>
+          <li>
+            <button onClick={handleLogin}>Logout</button>
+          </li>
+        </ul>
+      </nav>
       <Outlet />
-    </nav>
+    </div>
   );
 }
 

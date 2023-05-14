@@ -5,7 +5,7 @@ function Info() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     //id or the whole user?
