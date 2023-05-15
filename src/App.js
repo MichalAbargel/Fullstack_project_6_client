@@ -29,28 +29,30 @@ export default App;*/
 
 import "./App.css";
 import Login from "./Login";
-import UserDashboard from "./UserDashBoard";
-import Error from "./Error";
 import Users from "./Users";
 import Posts from "./Posts";
 import Todos from "./Todos";
 import Info from "./Info";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import {Routes, Route} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+
 
 function App() {
+
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/users/:userid" element={<Users />}>
-          <Route path="info" element={<Info />} />
+        <Route path="/users/:id?" element={<Users />}>
+          <Route path="info/:id?" element={<Info />} />
           <Route path="todos/:id?" element={<Todos />} />
           <Route path="posts/:id?" element={<Posts />} />
           <Route path="albums/:id?" element={<div>albums</div>} />
         </Route>
-        <Route path="*" element={<Error />} />
       </Routes>
-    </BrowserRouter>
   );
 }
 

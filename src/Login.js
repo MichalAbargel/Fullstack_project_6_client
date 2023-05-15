@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
+import { json, useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  const [login, setLogin] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if(storedUser){
+      console.log("storedUser");
+      const parsedUser = JSON.parse(storedUser);
+      setLoggedInUser(parsedUser);
+      console.log("navigate users");
+      navigate("/users/"+parsedUser.id);
+    }
+    
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/users?username=${username}`
@@ -16,7 +32,12 @@ function Login() {
       const data = await response.json();
       const user = data[0];
       if (user && password === user.address.geo.lat.slice(-4)) {
-        //enterrrrrrrr
+        setLoggedInUser(user);
+        //update localStoarge
+        localStorage.setItem("user",JSON.stringify(user));
+        console.log("naviget users");
+        navigate("/users");
+
       } else {
         setError("Invalid username or password.");
       }

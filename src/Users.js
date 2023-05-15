@@ -2,19 +2,16 @@ import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 function Users() {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!login) {
-      localStorage.removeItem("user");
-    }
-  }, [login]);
 
   const handleLogin = () => {
     setLogin(false);
+    localStorage.removeItem("user");
     navigate("/login");
   };
+
   return (
     <div>
       <nav>
