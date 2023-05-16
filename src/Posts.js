@@ -17,10 +17,8 @@ function Posts() {
       }
       const data = await response.json();
       if(data!==[]){
-        JSON.stringify(data);
-        setPosts((preveiwPosts)=>{
-          return [...preveiwPosts, ...data]
-        });
+        //JSON.stringify(data);
+        setPosts(data);
         console.log(data);
       }
     } catch (error) {
@@ -37,7 +35,7 @@ function Posts() {
       return (
         <div class="container-fluid">
           {posts.map((post) => (
-            <div class="card" style={{ width: "18rem" }}>
+            <div key={post.id} class="card" style={{ width: "18rem" }}>
               <div class="card-body">
                 <h5 class="card-title">{post.title}</h5>
                 <p class="card-text">{post.body}</p>
