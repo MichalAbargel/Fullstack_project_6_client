@@ -35,6 +35,7 @@ import Todos from "./Todos";
 import Info from "./Info";
 import Error from "./Error";
 import Gallery from "./Gallery";
+import Comments from "./Comments";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -48,7 +49,8 @@ function App() {
         <Route path="/users/:userid" element={<Users />}>
           <Route path="info" element={<Info />} />
           <Route path="todos/:id?" element={<Todos />} />
-          <Route path="posts/:id?" element={<Posts />} />
+          <Route path="posts" element={<Posts />} />
+          <Route path="posts/:id" element={<Comments/>} />
           <Route path="albums" element={<Albums/>} />
           <Route path="albums/:id" element={<Gallery/>} />
         </Route>
