@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 
 function Users() {
-  const [login, setLogin] = useState(false);
   const navigate = useNavigate();
+  const params = useParams();
 
+  useEffect(() => {
+    //ID or the whole user?
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user||params.userid != user.id) {
+      navigate("/login");
+    }
+  }, []);
 
-  const handleLogin = () => {
-    setLogin(false);
+  const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
@@ -29,7 +35,7 @@ function Users() {
             <Link to="todos">Todos</Link>
           </li>
           <li>
-            <button onClick={handleLogin}>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </li>
         </ul>
       </nav>

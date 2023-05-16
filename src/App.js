@@ -33,6 +33,10 @@ import Users from "./Users";
 import Posts from "./Posts";
 import Todos from "./Todos";
 import Info from "./Info";
+import Error from "./Error";
+import Gallery from "./Gallery";
+import Comments from "./Comments";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import {Routes, Route} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -41,17 +45,21 @@ import { useEffect, useState } from "react";
 
 
 function App() {
-
   return (
+    <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/users/:id?" element={<Users />}>
-          <Route path="info/:id?" element={<Info />} />
+        <Route path="/users/:userid" element={<Users />}>
+          <Route path="info" element={<Info />} />
           <Route path="todos/:id?" element={<Todos />} />
-          <Route path="posts/:id?" element={<Posts />} />
-          <Route path="albums/:id?" element={<div>albums</div>} />
+          <Route path="posts" element={<Posts />} />
+          <Route path="posts/:id" element={<Comments/>} />
+          <Route path="albums" element={<Albums/>} />
+          <Route path="albums/:id" element={<Gallery/>} />
         </Route>
+        <Route path="*" element={<Error />} />
       </Routes>
+    </BrowserRouter>
   );
 }
 
