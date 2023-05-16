@@ -10,7 +10,7 @@ function Posts() {
   const getPosts = async () => {
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/?userId=${params.id}`
+        `https://jsonplaceholder.typicode.com/posts/?userId=${params.userid}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
