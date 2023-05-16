@@ -7,21 +7,22 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loggedInUser, setLoggedInUser] = useState(null);
-
   const [login, setLogin] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if(storedUser){
-      console.log("storedUser");
-      const parsedUser = JSON.parse(storedUser);
-      setLoggedInUser(parsedUser);
-      console.log("navigate users");
-      navigate("/users/"+parsedUser.id);
+    // const storedUser = localStorage.getItem("user");
+    // if(storedUser){
+    //   console.log("storedUser");
+    //   const parsedUser = JSON.parse(storedUser);
+    //   setLoggedInUser(parsedUser);
+    //   console.log("navigate users");
+    //   navigate("/users/"+parsedUser.id);
+    // }
+    if (loggedInUser) {
+      localStorage.setItem("user", JSON.stringify(loggedInUser));
     }
-    
-  }, []);
+  }, [loggedInUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,10 +35,9 @@ function Login() {
       if (user && password === user.address.geo.lat.slice(-4)) {
         setLoggedInUser(user);
         //update localStoarge
-        localStorage.setItem("user",JSON.stringify(user));
+        //localStorage.setItem("user", JSON.stringify(user));
         console.log("naviget users");
         navigate(`/users/${user.id}`);
-
       } else {
         setError("Invalid username or password.");
       }
