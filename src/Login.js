@@ -36,7 +36,7 @@ function Login() {
         //update localStoarge
         localStorage.setItem("user",JSON.stringify(user));
         console.log("naviget users");
-        navigate("/users");
+        navigate(`/users/${user.id}`);
 
       } else {
         setError("Invalid username or password.");
