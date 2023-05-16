@@ -33,7 +33,6 @@ import Users from "./Users";
 import Posts from "./Posts";
 import Todos from "./Todos";
 import Info from "./Info";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Routes, Route} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
