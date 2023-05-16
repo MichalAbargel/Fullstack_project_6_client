@@ -35,7 +35,7 @@ function Login() {
       if (user && password === user.address.geo.lat.slice(-4)) {
         setLoggedInUser(user);
         //update localStoarge
-        //localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));////////////////////?
         console.log("naviget users");
         navigate(`/users/${user.id}`);
       } else {

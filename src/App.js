@@ -34,9 +34,11 @@ import Posts from "./Posts";
 import Todos from "./Todos";
 import Info from "./Info";
 import Error from "./Error";
+import Gallery from "./Gallery";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Albums from "./Albums";
 
 function App() {
   return (
@@ -47,7 +49,8 @@ function App() {
           <Route path="info" element={<Info />} />
           <Route path="todos/:id?" element={<Todos />} />
           <Route path="posts/:id?" element={<Posts />} />
-          <Route path="albums/:id?" element={<div>albums</div>} />
+          <Route path="albums" element={<Albums/>} />
+          <Route path="albums/:id" element={<Gallery/>} />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

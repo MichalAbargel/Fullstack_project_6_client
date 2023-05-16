@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-
 function Posts() {
   const params = useParams();
   const [posts, setPosts] = useState([]);
@@ -16,7 +15,7 @@ function Posts() {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      if(data!==[]){
+      if (data !== []) {
         //JSON.stringify(data);
         setPosts(data);
         console.log(data);
@@ -26,11 +25,11 @@ function Posts() {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getPosts();
-  },[])
+  }, []);
 
-  function handlePosts(){
+  function handlePosts() {
     if (params && posts) {
       return (
         <div class="container-fluid">
@@ -39,7 +38,9 @@ function Posts() {
               <div class="card-body">
                 <h5 class="card-title">{post.title}</h5>
                 <p class="card-text">{post.body}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="#" class="btn btn-primary">
+                  Go somewhere
+                </a>
               </div>
             </div>
           ))}
@@ -53,9 +54,7 @@ function Posts() {
   return (
     <div>
       <h2>Posts</h2>
-      <div>
-        {handlePosts()}
-      </div>
+      <div>{handlePosts()}</div>
     </div>
   );
 }
