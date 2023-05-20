@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Login.css";
+import "./styles/Login.css";
 import { json, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -11,18 +11,20 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // const storedUser = localStorage.getItem("user");
-    // if(storedUser){
-    //   console.log("storedUser");
-    //   const parsedUser = JSON.parse(storedUser);
-    //   setLoggedInUser(parsedUser);
-    //   console.log("navigate users");
-    //   navigate("/users/"+parsedUser.id);
-    // }
     if (loggedInUser) {
       localStorage.setItem("user", JSON.stringify(loggedInUser));
     }
   }, [loggedInUser]);
+
+  useEffect(()=>{
+    // in case user already connected
+    const storedUser = localStorage.getItem("user");
+    if(storedUser){
+      const parsedUser = JSON.parse(storedUser);
+      console.log("navigate users");
+      navigate("/users/"+parsedUser.id);
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +39,7 @@ function Login() {
         //update localStoarge
         localStorage.setItem("user", JSON.stringify(user));////////////////////?
         console.log("naviget users");
+        setLogin(false);
         navigate(`/users/${user.id}`);
       } else {
         setError("Invalid username or password.");

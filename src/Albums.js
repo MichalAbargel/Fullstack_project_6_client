@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import "./styles/albums.css"
 
 function Albums() {
   const params = useParams();
@@ -29,11 +30,11 @@ function Albums() {
 
   function handleAlbums() {
     return (
-      <div>
+      <div class="album-containor">
         {albums.map((album) => (
           <Link to={String(album.id)} key={album.id}>
-            <div>
-              <p>{album.title}</p>
+            <div key={album.id} class="album" style={{ width: "18rem" }}>
+              <h5 class="album-title">{album.title}</h5>
             </div>
           </Link>
         ))}

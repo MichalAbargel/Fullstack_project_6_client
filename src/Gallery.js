@@ -27,15 +27,40 @@ function Gallery() {
     getPhotos();
   }, []);
 
+  function open(e) {
+    const overlay = document.querySelector('.overlay');
+    const overlayImage = document.querySelector('.overlay__inner img');
+    overlay.classList.add('open');
+    console.log(e.currentTarget.parentNode);
+    //const src= e.currentTarget.querySelector('.project__image').src;
+    //overlayImage.src = src;
+  }
+  
+  function close() {
+    const overlay = document.querySelector('.overlay');
+    overlay.classList.remove('open');
+  }
+
   return (
-    <div>
+    <section id="portfolio">
       {photos.map((photo) => (
-        <div key={photo.id}>
-          <img src={photo.thumbnailUrl} />
-        </div>
+        <div key={photo.id} class="project">
+          <img className="project__image" src={photo.url} />
+          <p>websites</p>
+          <h3 className="grid__title"> front-end</h3>
+          <div className="grid__overlay">
+            <button className="viewbutton" onClick={(e)=>{open(e)}}>full size</button>
+          </div>
+      </div>
       ))}
+      <div class="overlay">
+        <div class="overlay__inner">
+          <button class="close" onClick={(e)=>{close(e)}}>close X</button>
+          <img/>
+        </div>
+      </div>
       <button onClick={getPhotos}>show more</button>
-    </div>
+    </section>
   );
 }
 

@@ -1,32 +1,3 @@
-/*import "./App.css";
-import Login from "./Login";
-import UserDashboard from "./UserDashBoard";
-import Error from "./Error";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-function App() {
-  //return <UserDashboard userId={1} />;
-  return (
-    <BrowserRouter>
-      <Routes>
-       
-        <Route path="/login" element={<Login />} />
-        <Route path="/users/:userid" element={<div>users</div>}>
-          
-          <Route path="*" element={<div>user *</div>} />
-          <Route path="info" element={<div>info</div>} />
-          <Route path="todos/:id" element={<div>todos</div>} />
-          <Route path="posts/:id" element={<div>posts</div>} />
-          <Route path="albums/:id" element={<div>albums</div>} />
-        </Route>
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-export default App;*/
-
 import "./App.css";
 import Login from "./Login";
 import Users from "./Users";
@@ -36,7 +7,15 @@ import Info from "./Info";
 import Error from "./Error";
 import Gallery from "./Gallery";
 import Comments from "./Comments";
+import Albums from "./Albums";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/comment.css";
+import "./styles/post.css";
+import "./styles/todos.css";
+import "./styles/gallery.css";
+import "./styles/nav.css";
+import "./styles/userInfo.css";
+
 
 import {Routes, Route} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -45,8 +24,12 @@ import { useEffect, useState } from "react";
 
 
 function App() {
+  const navigate = useNavigate();
+  useEffect(()=>{
+    navigate("/login");
+  }, [])
+
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/users/:userid" element={<Users />}>
@@ -59,7 +42,6 @@ function App() {
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>
-    </BrowserRouter>
   );
 }
 
