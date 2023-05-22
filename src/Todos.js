@@ -51,7 +51,7 @@ function Todos() {
 
   function handleTodos() {
     return (
-      <div>
+      <div className="todos-container">
         <ul>
           {todos.map((todo) => (
             <li key={todo.id}>
@@ -92,9 +92,9 @@ function Todos() {
   }
 
   return (
-    <div className="container">
+    <div className="background">
       {/* <h2 className="center">todos</h2> */}
-      <div className="row">
+      <div className="row mt-10">
         <div className="col-md-6 offset-md-3">
           <div className="d-flex align-items-center">
             <p className="me-2 mb-0 h5" style={{ whiteSpace: "nowrap" }}>

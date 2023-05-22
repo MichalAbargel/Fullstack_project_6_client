@@ -127,3 +127,15 @@ button {
 .project__image {
   margin-left: -50%;
 }
+
+.galary-containor {  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    
+    min-height: 50vh;
+    padding: 30px;
+    gap:12px;
+        
+  }

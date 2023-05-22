@@ -78,6 +78,15 @@
     stroke-dasharray: 22.7713679002;
     stroke: currentcolor;
   }
+
+  .todos-container{
+    font: 1em/1.618 Inter, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 30px;
+
+  }
   
   @supports (display: grid) {
     .mcui-check polyline {
