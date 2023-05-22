@@ -29,7 +29,7 @@ import Menu from "./Nav";
     {
       name: "Logout",
       color: "#f44336",
-      href: "logout"
+      href: "/login"
     }
   ];
 

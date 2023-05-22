@@ -69,7 +69,7 @@ import { Link, useNavigate } from "react-router-dom";
               setActive(index)
             }}
             to={item.href}
-            onClick={item.href==='logout'?handleLogout:null}
+            onClick={item.href==='/login'?handleLogout:null}
           >
             {item.name}
           </Link>
