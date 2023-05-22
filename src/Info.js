@@ -31,7 +31,7 @@ function Info() {
       <div className="padding">
         <div className="row container d-flex justify-content-center">
           <div className="col-xl-6 col-md-12">
-            <div className="card-user user-card-full">
+            <div className="card-user user-card-full" style={{background:"rgba(255, 255, 255, 0.9)" }}>
               <div className="row m-l-0 m-r-0">
                 <div className="col-sm-4 bg-c-lite-green user-profile">
                   <div className="card-block text-center text-white">
