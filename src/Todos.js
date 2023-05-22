@@ -70,7 +70,11 @@ function Todos() {
                   }}
                 />
                 <div>
-                  <svg className="mcui-check" viewBox="-2 -2 35 35" aria-hidden="true">
+                  <svg
+                    className="mcui-check"
+                    viewBox="-2 -2 35 35"
+                    aria-hidden="true"
+                  >
                     <title>checkmark-circle</title>
                     <polyline points="7.57 15.87 12.62 21.07 23.43 9.93" />
                   </svg>
@@ -88,17 +92,29 @@ function Todos() {
   }
 
   return (
-    <div>
-      <h2>todos</h2>
-      <div>
-        Sort by:
-        <select value={sort} onChange={(e) => setSort(e.target.value)}>
-          <option value="serial">Serial</option>
-          <option value="execution">Execution</option>
-          <option value="alphabetical">Alphabetical</option>
-          <option value="random">Random</option>
-        </select>
+    <div className="container">
+      {/* <h2 className="center">todos</h2> */}
+      <div className="row">
+        <div className="col-md-6 offset-md-3">
+          <div className="d-flex align-items-center">
+            <p className="me-2 mb-0 h5" style={{ whiteSpace: "nowrap" }}>
+              Sort By:
+            </p>
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              className="form-select"
+              aria-label="Select Option"
+            >
+              <option value="serial">Serial</option>
+              <option value="execution">Execution</option>
+              <option value="alphabetical">Alphabetical</option>
+              <option value="random">Random</option>
+            </select>
+          </div>
+        </div>
       </div>
+
       <div>{handleTodos()}</div>
     </div>
   );
