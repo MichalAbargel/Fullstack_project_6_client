@@ -32,12 +32,12 @@ function Posts() {
   function handlePosts() {
     if (params && posts) {
       return (
-        <div class="post-containor">
+        <div className="post-containor">
           {posts.map((post) => (
-            <div key={post.id} class="card" style={{ width: "18rem" }}>
-              <h5 class="card-title">{post.title}</h5>
+            <div key={post.id} className="card" style={{ width: "18rem" }}>
+              <h5 className="card-title">{post.title}</h5>
               <p>{post.body}</p>
-              <Link to={String(post.id)} class="btn btn-danger">Comments</Link>
+              <Link to={String(post.id)} className="btn btn-danger">Comments</Link>
             </div>
           ))}
         </div>

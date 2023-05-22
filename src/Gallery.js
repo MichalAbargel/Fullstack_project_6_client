@@ -44,7 +44,7 @@ function Gallery() {
   return (
     <section id="portfolio">
       {photos.map((photo) => (
-        <div key={photo.id} class="project">
+        <div key={photo.id} className="project">
           <img className="project__image" src={photo.url} />
           <p>websites</p>
           <h3 className="grid__title"> front-end</h3>
@@ -53,9 +53,9 @@ function Gallery() {
           </div>
       </div>
       ))}
-      <div class="overlay">
-        <div class="overlay__inner">
-          <button class="close" onClick={(e)=>{close(e)}}>close X</button>
+      <div className="overlay">
+        <div className="overlay__inner">
+          <button className="close" onClick={(e)=>{close(e)}}>close X</button>
           <img/>
         </div>
       </div>

@@ -30,11 +30,11 @@ function Albums() {
 
   function handleAlbums() {
     return (
-      <div class="album-containor">
+      <div className="album-containor">
         {albums.map((album) => (
           <Link to={String(album.id)} key={album.id}>
-            <div key={album.id} class="album" style={{ width: "18rem" }}>
-              <h5 class="album-title">{album.title}</h5>
+            <div key={album.id} className="album" style={{ width: "18rem" }}>
+              <h5 className="album-title">{album.title}</h5>
             </div>
           </Link>
         ))}
