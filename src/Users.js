@@ -5,33 +5,33 @@ import Menu from "./Nav";
 /*--------------------
   Items
   --------------------*/
-  const items = [
-    {
-      name: "Posts",
-      color: "#f44336",
-      href: "posts"
-    },
-    {
-      name: "Info",
-      color: "#e91e63",
-      href: "info"
-    },
-    {
-      name: "Albums",
-      color: "#9c27b0",
-      href: "albums"
-    },
-    {
-      name: "Todos",
-      color: "#673ab7",
-      href: "todos"
-    },
-    {
-      name: "Logout",
-      color: "#f44336",
-      href: "/login"
-    }
-  ];
+const items = [
+  {
+    name: "Posts",
+    color: "#f44336",
+    href: "posts",
+  },
+  {
+    name: "Info",
+    color: "#e91e63",
+    href: "info",
+  },
+  {
+    name: "Albums",
+    color: "#9c27b0",
+    href: "albums",
+  },
+  {
+    name: "Todos",
+    color: "#673ab7",
+    href: "todos",
+  },
+  {
+    name: "Logout",
+    color: "#f44336",
+    href: "/login",
+  },
+];
 
 function Users() {
   const navigate = useNavigate();
@@ -42,19 +42,17 @@ function Users() {
     //ID or the whole user?
     const user = JSON.parse(localStorage.getItem("user"));
     console.log(user);
-    if (!user||params.userid != user.id) {
+    if (!user || params.userid != user.id) {
       navigate("/login");
-    }
-    else{
+    } else {
       setName(user.name);
     }
   }, []);
 
-
   return (
-    <div>
+    <div className="background home-page">
       <nav>
-        <div className="App">
+        <div className="background">
           <Menu items={items} />
           <h1>{name}</h1>
         </div>

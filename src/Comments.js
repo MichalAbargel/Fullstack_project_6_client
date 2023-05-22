@@ -57,7 +57,7 @@ function Comments() {
             <p>{post.body}</p>
           </div>
         </div>
-        <div className="container">
+        <div className="container text-center">
           <ul>
             {comments.map((comment) => (
               <div className="row">
