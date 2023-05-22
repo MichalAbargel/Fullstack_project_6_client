@@ -27,40 +27,30 @@ function Gallery() {
     getPhotos();
   }, []);
 
-  function open(e) {
-    const overlay = document.querySelector('.overlay');
-    const overlayImage = document.querySelector('.overlay__inner img');
-    overlay.classList.add('open');
-    console.log(e.currentTarget.parentNode);
-    //const src= e.currentTarget.querySelector('.project__image').src;
-    //overlayImage.src = src;
-  }
-  
-  function close() {
-    const overlay = document.querySelector('.overlay');
-    overlay.classList.remove('open');
-  }
-
   return (
-    <section id="portfolio">
-      {photos.map((photo) => (
-        <div key={photo.id} className="project">
-          <img className="project__image" src={photo.url} />
-          <p>websites</p>
-          <h3 className="grid__title"> front-end</h3>
-          <div className="grid__overlay">
-            <button className="viewbutton" onClick={(e)=>{open(e)}}>full size</button>
+    <div className="album-containor">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-10 col-lg-8">
+          <div className="row row-cols-1 row-cols-md-4 g-4">
+            {photos.map((photo) => (
+              <div className="col mb-4" key={photo.id}>
+                <img
+                  src={photo.thumbnailUrl}
+                  className="rounded img-fluid"
+                  alt={photo.title}
+                  style={{ width: "100%" }}
+                />
+              </div>
+            ))}
           </div>
-      </div>
-      ))}
-      <div className="overlay">
-        <div className="overlay__inner">
-          <button className="close" onClick={(e)=>{close(e)}}>close X</button>
-          <img/>
         </div>
       </div>
-      <button onClick={getPhotos}>show more</button>
-    </section>
+      <div className="text-center mt-4">
+        <button className="btn btn-primary" onClick={getPhotos}>
+          Show More
+        </button>
+      </div>
+    </div>
   );
 }
 
