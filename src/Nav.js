@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
   /*--------------------
   Menu
   --------------------*/
-  //cathGPT
+  
   const Menu = ({items}) => {
     const $root = useRef()
     const $indicator1 = useRef()
