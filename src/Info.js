@@ -6,15 +6,10 @@ function Info() {
   const [user, setUser] = useState(null);
   const getUser = async () => {
     try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
+      const data = JSON.parse(localStorage.getItem("user"));
+      console.log(data);
       if (data !== []) {
-        setUser(data.filter((user) => user.id == params.userid)[0]);
+        setUser(data);
       }
     } catch (error) {
       throw error; ///////////////////?
@@ -31,7 +26,10 @@ function Info() {
       <div className="padding">
         <div className="row container d-flex justify-content-center">
           <div className="col-xl-6 col-md-12">
-            <div className="card-user user-card-full" style={{background:"rgba(255, 255, 255, 0.9)" }}>
+            <div
+              className="card-user user-card-full"
+              style={{ background: "rgba(255, 255, 255, 0.9)" }}
+            >
               <div className="row m-l-0 m-r-0">
                 <div className="col-sm-4 bg-c-lite-green user-profile">
                   <div className="card-block text-center text-white">

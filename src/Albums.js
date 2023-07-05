@@ -9,7 +9,8 @@ function Albums() {
   const getAlbums = async () => {
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/albums/?userId=${params.userid}`
+        //`https://jsonplaceholder.typicode.com/albums/?userId=${params.userid}`
+        `http://localhost:3500/api/alboms/${params.userid}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");

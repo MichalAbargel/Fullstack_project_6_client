@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function Gallery() {
+  const params = useParams();
   const [photos, setPhotos] = useState([]);
   const interval = 9;
 
   const getPhotos = async () => {
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/photos?_limit=${interval}&_start=${photos.length}`
+        //`https://jsonplaceholder.typicode.com/photos?_limit=${interval}&_start=${photos.length}`
+        `http://localhost:3500/api/photos/${params.id}/?limit=${interval}&start=${photos.length}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -40,7 +42,7 @@ function Gallery() {
         ))}
       </div>
       <div className="text-center m-4">
-        <button className="btn btn-primary" onClick={getPhotos}>
+        <button className="btn btn-primary galary-btn" onClick={getPhotos}>
           Show More
         </button>
       </div>

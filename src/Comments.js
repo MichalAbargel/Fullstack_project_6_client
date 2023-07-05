@@ -10,7 +10,8 @@ function Comments() {
   const getComments = async () => {
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/comments/?userId=${params.userid}&postId=${params.id}`
+        // `https://jsonplaceholder.typicode.com/comments/?userId=${params.userid}&postId=${params.id}`
+        `http://localhost:3500/api/comments/${params.userid}/${params.id}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -21,14 +22,15 @@ function Comments() {
         console.log(data);
       }
     } catch (error) {
-      throw error; ////////////?
+      throw error; ////////////
     }
   };
 
   const getPost = async () => {
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/?userId=${params.userid}&id=${params.id}`
+        //`https://jsonplaceholder.typicode.com/posts/?userId=${params.userid}&id=${params.id}`
+        `http://localhost:3500/api/posts/${params.userid}/${params.id}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");

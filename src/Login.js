@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Login.css";
 import { json, useNavigate } from "react-router-dom";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -16,28 +17,30 @@ function Login() {
     }
   }, [loggedInUser]);
 
-  useEffect(()=>{
+  useEffect(() => {
     // in case user already connected
     const storedUser = localStorage.getItem("user");
-    if(storedUser){
+    if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       console.log("navigate users");
-      navigate("/users/"+parsedUser.id);
+      navigate("/users/" + parsedUser.id);
     }
-  }, [])
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/users?username=${username}`
+        // `https://jsonplaceholder.typicode.com/users?username=${username}`
+        `http://localhost:3500/api/users/${username}`
       );
       const data = await response.json();
+      console.log(data);
       const user = data[0];
       if (user && password === user.address.geo.lat.slice(-4)) {
         setLoggedInUser(user);
         //update localStoarge
-        localStorage.setItem("user", JSON.stringify(user));////////////////////?
+        localStorage.setItem("user", JSON.stringify(user)); ////////////////////?
         console.log("naviget users");
         setLogin(false);
         navigate(`/users/${user.id}`);
@@ -50,11 +53,14 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
-      <div>
-        <label htmlFor="username">Username:</label>
+    <form onSubmit={handleSubmit} className="login-form">
+      <h1 className="login-title">Login</h1>
+      <div className="login-container">
+        <label htmlFor="username" className="login-lable">
+          Username:
+        </label>
         <input
+          className="login-input"
           type="text"
           id="username"
           value={username}
@@ -63,8 +69,11 @@ function Login() {
         />
       </div>
       <div>
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password" className="login-lable">
+          Password:
+        </label>
         <input
+          className="login-input"
           type="password"
           id="password"
           value={password}
@@ -73,7 +82,9 @@ function Login() {
         />
       </div>
       {error && <div style={{ color: "red" }}>{error}</div>}
-      <button type="submit">Login</button>
+      <button type="submit" className="login-btn">
+        Login
+      </button>
     </form>
   );
 }

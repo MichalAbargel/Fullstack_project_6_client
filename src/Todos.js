@@ -9,7 +9,8 @@ function Todos() {
   const getTodos = async () => {
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/todos/?userId=${params.userid}`
+        //`https://jsonplaceholder.typicode.com/todos/?userId=${params.userid}`
+        `http://localhost:3500/api/todos/${params.userid}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
