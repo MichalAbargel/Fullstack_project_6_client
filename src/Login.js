@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles/Login.css";
 import { json, useNavigate } from "react-router-dom";
 import { wait } from "@testing-library/user-event/dist/utils";
-
+import axios from 'axios';
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +12,7 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loggedInUser) {
+    if (loggedInUser!=null) {
       localStorage.setItem("user", JSON.stringify(loggedInUser));
     }
   }, [loggedInUser]);
@@ -20,39 +20,57 @@ function Login() {
   useEffect(() => {
     // in case user already connected
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
+    const parsedUser = JSON.parse(storedUser);
+    if (parsedUser!=null) {
       console.log("navigate users");
       navigate("/users/" + parsedUser.id);
     }
-  }, []);
+  }, [navigate]);
+
+  const handleSingout = ()=>{
+    console.log("Sign Up")
+    navigate(`/register`);
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        // `https://jsonplaceholder.typicode.com/users?username=${username}`
-        `http://localhost:3500/api/users/${username}`
-      );
-      const data = await response.json();
-      console.log(data);
-      const user = data[0];
-      if (user && password === user.address.geo.lat.slice(-4)) {
-        setLoggedInUser(user);
+
+  e.preventDefault();
+
+  const data = {
+    username: username,
+    password: password
+  };
+
+  fetch('http://localhost:3500/api/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('פרטי ההתחברות שגויים');
+      }
+    })
+    .then(user => {
+       setLoggedInUser(user);
         //update localStoarge
         localStorage.setItem("user", JSON.stringify(user)); ////////////////////?
         console.log("naviget users");
         setLogin(false);
         navigate(`/users/${user.id}`);
-      } else {
-        setError("Invalid username or password.");
-      }
-    } catch (error) {
-      setError("Error logging in.");
-    }
+    })
+    .catch(error => {
+      console.log("ERROR");
+    });
+ 
   };
 
   return (
+    <div>
     <form onSubmit={handleSubmit} className="login-form">
       <h1 className="login-title">Login</h1>
       <div className="login-container">
@@ -82,10 +100,16 @@ function Login() {
         />
       </div>
       {error && <div style={{ color: "red" }}>{error}</div>}
-      <button type="submit" className="login-btn">
-        Login
-      </button>
+      <div className="button-container">
+  <button name="login" type="submit" className="login-btn">
+    Login
+  </button>
+  <button name="register" type="submit" className="login-btn" onClick={handleSingout}>
+    SIGN UP
+  </button>
+</div>
     </form>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #5d5555;
     margin: 0;
     padding: 0;
 }
@@ -57,3 +57,9 @@ body {
 .login-container[style] {
     margin-top: 10px;
 }
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
