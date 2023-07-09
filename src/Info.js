@@ -71,13 +71,13 @@ function Info() {
                       <div className="col-sm-6">
                         <p className="m-b-10 f-w-600">Address</p>
                         <h6 className="text-muted f-w-400">
-                          {user.address.street + ", " + user.address.city}
+                          {/* {user.address.street + ", " + user.address.city} */}
                         </h6>
                       </div>
                       <div className="col-sm-6">
                         <p className="m-b-10 f-w-600">company</p>
                         <h6 className="text-muted f-w-400">
-                          {user.company.name}
+                          {/* {user.company.name} */}
                         </h6>
                       </div>
                     </div>

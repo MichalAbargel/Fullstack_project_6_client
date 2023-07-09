@@ -18,8 +18,8 @@ function Comments() {
       }
       const data = await response.json();
       if (data !== []) {
-        setComments(data);
-        console.log(data);
+        setComments(JSON.stringify(data));
+        console.log(comments);
       }
     } catch (error) {
       throw error; ////////////
@@ -37,8 +37,8 @@ function Comments() {
       }
       const data = await response.json();
       if (data !== []) {
-        setPost(data[0]);
-        console.log(data[0]);
+        setPost(data);
+        console.log(data);
       }
     } catch (error) {
       throw error; ////////////?
@@ -55,13 +55,13 @@ function Comments() {
       <div>
         <div className="post-containor">
           <div key={post.id} className="card" style={{ width: "18rem" }}>
-            <h5 className="card-title">{post.title}</h5>
+            <h5 className="card-title">{post & post.title}</h5>
             <p>{post.body}</p>
           </div>
         </div>
         <div className="container text-center">
           <ul>
-            {comments.map((comment) => (
+            {Array.isArray(comments) && comments.map((comment, i) => (
               <div className="row">
                 <div className="col-md-8">
                   <div className="media g-mb-30 media-comment">

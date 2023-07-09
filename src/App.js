@@ -1,5 +1,6 @@
 import "./App.css";
 import Login from "./Login";
+import Register from "./Register";
 import Users from "./Users";
 import Posts from "./Posts";
 import Todos from "./Todos";
@@ -30,6 +31,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/users/:userid" element={<Users />}>
         <Route path="info" element={<Info />} />
         <Route path="todos/:id?" element={<Todos />} />
