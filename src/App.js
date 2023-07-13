@@ -16,7 +16,7 @@ import "./styles/todos.css";
 import "./styles/gallery.css";
 import "./styles/nav.css";
 import "./styles/userInfo.css";
-import "./styles/postForm.css"
+import "./styles/deleteBtn.css";
 
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

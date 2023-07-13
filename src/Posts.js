@@ -1,3 +1,4 @@
+import { Button } from "bootstrap";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -7,7 +8,7 @@ function Posts() {
   const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
-  const [message, setMessage] = useState("");
+  const [body, setBody] = useState("");
   const [post, setPost] = useState(null);
 
   const getPosts = async () => {
@@ -25,7 +26,7 @@ function Posts() {
         console.log(data);
       }
     } catch (error) {
-      setError("Error posts");
+      console.log("Error posts");
     }
   };
 
@@ -34,6 +35,7 @@ function Posts() {
   }, []);
 
   useEffect(() => {
+    console.log("set");
     console.log(post);
     addPost();
   }, [post]);
@@ -44,8 +46,29 @@ function Posts() {
         <div className="post-containor">
           {posts.map((post) => (
             <div key={post.id} className="card" style={{ width: "18rem" }}>
-              <h5 className="card-title">{post.title}</h5>
+              <div class="container text-center">
+                <div class="row">
+                  <div class="col-6">
+                    <h5 className="card-title">{post.title}</h5>
+                  </div>
+                  <div key={post.id} class="col-1">
+                    <button
+                      class="button button-delete"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        console.log(post.id);
+                        deletePost(post.id);
+                      }}
+                    >
+                      <span class="mdi mdi-delete mdi-24px"></span>
+                      <span class="mdi mdi-delete-empty mdi-24px"></span>
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
               <p className="post-prg">{post.body}</p>
+              <div></div>
               <Link to={String(post.id)} className="btn btn-danger">
                 Comments
               </Link>
@@ -81,58 +104,92 @@ function Posts() {
         }
         const data = await response.json();
         if (data !== null) {
-          console.log(post);
+          console.log(data);
         }
       } catch (error) {
         setError("Error adding Post");
       }
+      setShowForm(false);
+      // update posts on screen
+      getPosts();
     }
   };
 
+  async function deletePost(postId) {
+    console.log("try to delete post");
+    console.log(postId);
+    try {
+      const response = await fetch(
+        `http://localhost:3500/api/posts/${postId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      if (data !== null) {
+        console.log(data);
+      }
+    } catch (error) {
+      setError("Error adding Post");
+    }
+    // update posts on screen
+    getPosts();
+  }
+
   return (
     <div>
-      <button className="btn btn-danger" onClick={handleAddPost}>
-        +
-      </button>
+      <div className="btn-add">
+        <button className="btn btn-danger" onClick={handleAddPost}>
+          +
+        </button>
+      </div>
       {showForm && (
-        <div className="inner">
-          <form className="form-contianer" action="">
-            <h3 className="form-title">Write Somthing</h3>
-            <label class="form-group">
-              <input
-                type="text"
-                className="form-control post-input"
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-              <span>Title</span>
-              <span className="border"></span>
+        <div className="card" style={{ width: "20rem" }}>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              Title
             </label>
-            <label className="form-group">
-              <textarea
-                name=""
-                id=""
-                className="form-control form-textarea"
-                onChange={(e) => setMessage(e.target.value)}
-                required
-              ></textarea>
-              <span for="">Message</span>
-              <span className="border"></span>
-            </label>
-            <button
-              onClick={(event) => {
-                event.preventDefault();
-                setPost({
-                  userid: params.userid,
-                  title: title,
-                  message: message,
-                });
+            <input
+              class="form-control"
+              id="postTitle"
+              onChange={(e) => {
+                setTitle(e.target.value);
               }}
-            >
-              Add Post
-              <i className="zmdi zmdi-arrow-right form-btn"></i>
-            </button>
-          </form>
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">
+              what's happening?
+            </label>
+            <textarea
+              class="form-control"
+              id="postBody"
+              rows="3"
+              onChange={(e) => {
+                setBody(e.target.value);
+              }}
+            ></textarea>
+          </div>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              console.log("click add post");
+              setPost({
+                userId: params.userid,
+                title: title,
+                body: body,
+              });
+            }}
+            className="btn btn-danger"
+          >
+            Add Post
+          </button>
         </div>
       )}
       <div>{handlePosts()}</div>
