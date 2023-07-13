@@ -51,6 +51,19 @@ function Posts() {
                   <div class="col-6">
                     <h5 className="card-title">{post.title}</h5>
                   </div>
+                  <div class="col-1">
+                    <button
+                      class="button button-delete"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        console.log(post.id);
+                      }}
+                    >
+                      <span class="mdi mdi-delete mdi-24px"></span>
+                      <span class="mdi mdi-delete-empty mdi-24px"></span>
+                      <i class="fa fa-edit"></i>
+                    </button>
+                  </div>
                   <div key={post.id} class="col-1">
                     <button
                       class="button button-delete"
@@ -62,7 +75,7 @@ function Posts() {
                     >
                       <span class="mdi mdi-delete mdi-24px"></span>
                       <span class="mdi mdi-delete-empty mdi-24px"></span>
-                      <span>Delete</span>
+                      <i class="fa fa-trash"></i>
                     </button>
                   </div>
                 </div>
@@ -136,9 +149,9 @@ function Posts() {
         console.log(data);
       }
     } catch (error) {
-      setError("Error adding Post");
+      console.log("Error delete Post");
     }
-    // update posts on screen
+    // update posts
     getPosts();
   }
 

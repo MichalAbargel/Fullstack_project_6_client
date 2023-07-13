@@ -5,7 +5,7 @@
     background: none;
     border: 1px solid #bdbdbd;
     background-color: #fff5f5;
-    height: 48px;
+    height: 38px;
     padding: 0 24px 0 16px;
     letter-spacing: 0.25px;
     border-radius: 24px;
@@ -38,3 +38,4 @@
   .btn-delete:focus {
     box-shadow: 0 0 0 4px #ffcccc;
   }
+

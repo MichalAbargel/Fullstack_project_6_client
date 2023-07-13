@@ -83,6 +83,33 @@ function Comments() {
     addComment();
   }, [newComment]);
 
+  async function deleteComment(commentId) {
+    console.log("try to delete post");
+    console.log(commentId);
+    try {
+      const response = await fetch(
+        `http://localhost:3500/api/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      if (data !== null) {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log("Error delete comment");
+    }
+    // update comments
+    getComments();
+  }
+
   function showComments() {
     return (
       <div>
@@ -96,10 +123,39 @@ function Comments() {
                   alt="Image Description"
                 />
                 <div className="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-                  <div className="g-mb-15">
-                    <h5 className="h5 g-color-gray-dark-v1 mb-0">
-                      {comment.name}
-                    </h5>
+                  <div class="container text-center">
+                    <div class="row">
+                      <div class="col-8">
+                        <h5 className="card-title">{comment.name}</h5>
+                      </div>
+                      <div class="col-1">
+                        <button
+                          class="button button-delete"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            console.log(comment.id);
+                          }}
+                        >
+                          <span class="mdi mdi-delete mdi-24px"></span>
+                          <span class="mdi mdi-delete-empty mdi-24px"></span>
+                          <i class="fa fa-edit"></i>
+                        </button>
+                      </div>
+                      <div class="col-1">
+                        <button
+                          class="button button-delete"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            console.log(comment.id);
+                            deleteComment(comment.id);
+                          }}
+                        >
+                          <span class="mdi mdi-delete mdi-24px"></span>
+                          <span class="mdi mdi-delete-empty mdi-24px"></span>
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
                   </div>
 
                   <p>{comment.body}</p>
