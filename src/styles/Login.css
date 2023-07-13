@@ -5,8 +5,26 @@ body {
     padding: 0;
 }
 
+.input-unit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .input-label {
+    flex-basis: 35%;
+  }
+  
+.red-asterisk::after {
+  content: "*";
+  color: red;
+  margin-left: 4px;
+}
+  
+
 .login-form {
-    width: 400px;
+    width: 500px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -24,11 +42,14 @@ body {
 }
 
 .login-label {
+    color: #3e8e41;
     font-size: 16px;
     margin-bottom: 5px;
 }
 
 .login-input[type="text"],
+.login-input[type="tel"],
+.login-input[type="email"],
 .login-input[type="password"] {
     width: 100%;
     padding: 10px;
