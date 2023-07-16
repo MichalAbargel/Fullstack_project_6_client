@@ -64,6 +64,7 @@ function Posts() {
                           setEditTitle(e.target.value);
                           console.log(e.target.value);
                         }}
+                        autoFocus
                       />
                     ) : (
                       <h5 className="card-title">{post.title}</h5>
@@ -115,6 +116,7 @@ function Posts() {
                     // Handle changes to the title input
                     setEditBody(e.target.value);
                   }}
+                  autoFocus
                 />
               ) : (
                 <p className="post-prg">{post.body}</p>

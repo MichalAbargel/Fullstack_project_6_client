@@ -17,11 +17,6 @@ const items = [
     href: "info",
   },
   {
-    name: "Albums",
-    color: "#9c27b0",
-    href: "albums",
-  },
-  {
     name: "Todos",
     color: "#673ab7",
     href: "todos",

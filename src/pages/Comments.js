@@ -141,6 +141,7 @@ function Comments() {
                               // Handle changes to the title input
                               setEditName(e.target.value);
                             }}
+                            autoFocus
                           />
                         ) : (
                           <h5 className="card-title">{comment.name}</h5>
@@ -185,13 +186,13 @@ function Comments() {
                   </div>
                   {isEditing && selectedCommentId === comment.id ? (
                     <textarea
-                      className="card-title"
                       type="text"
                       value={editBody}
                       onChange={(e) => {
                         // Handle changes to the title input
                         setEditBody(e.target.value);
                       }}
+                      autoFocus
                     />
                   ) : (
                     <p>{comment.body}</p>
