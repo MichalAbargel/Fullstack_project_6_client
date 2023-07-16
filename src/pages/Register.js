@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./styles/Login.css";
+import "../styles/Register.css";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -68,6 +68,7 @@ function Login() {
             field: "username",
             message: "Username is already taken. Choose another name.",
           });
+          throw new Error(response.status);
         } else {
           throw new Error(response.error);
         }
@@ -80,7 +81,11 @@ function Login() {
          navigate(`/users/${user.id}`);
      })
       .catch((error) => {
-        setError(error.message);
+        if(error.message==="409"){
+          console.log("Username conflict");
+        }else{
+          console.log(error.message);
+        }
       });
   };
 
@@ -105,12 +110,12 @@ function Login() {
           <div className="tab">
             <div className="input-unit">
               <div className="input-label">
-                <label htmlFor="fullName" className="login-label red-asterisk">
+                <label htmlFor="fullName" className="register-label red-asterisk">
                   Full Name
                 </label>
               </div>
               <input
-                className="login-input "
+                className="register-input "
                 type="text"
                 id="fullName"
                 value={fullName}
@@ -121,12 +126,12 @@ function Login() {
             </div>
             <div className="input-unit">
               <div className="input-label">
-                <label htmlFor="email" className="login-label red-asterisk">
+                <label htmlFor="email" className="register-label red-asterisk">
                   Mail
                 </label>
               </div>
               <input
-                className="login-input"
+                className="register-input"
                 type="email"
                 id="email"
                 value={email}
@@ -137,12 +142,12 @@ function Login() {
             </div>
             <div className="input-unit">
               <div className="input-label">
-                <label htmlFor="phone" className="login-label red-asterisk">
+                <label htmlFor="phone" className="register-label red-asterisk">
                   Phone
                 </label>
               </div>
               <input
-                className="login-input"
+                className="register-input"
                 type="tel"
                 id="phone"
                 value={phone}
@@ -152,12 +157,12 @@ function Login() {
             </div>
             <div className="input-unit">
               <div className="input-label">
-                <label htmlFor="website" className="login-label">
+                <label htmlFor="website" className="register-label">
                   Website
                 </label>
               </div>
               <input
-                className="login-input"
+                className="register-input"
                 type="text"
                 id="website"
                 value={website}
@@ -165,10 +170,11 @@ function Login() {
                 onChange={(e) => setWebsite(e.target.value)}
               />
             </div>
-            {error && <div style={{ color: "red" }}>{error}</div>}
+            {/* {error && <div style={{ color: "red" }}>{error}</div>} */}
             <button
               type="button"
               onClick={handleNext}
+              className="register-btn"
               disabled={!fullName || !email || !phone}
             >
               Next
@@ -182,12 +188,12 @@ function Login() {
           <div className="tab">
             <div className="input-unit">
               <div className="input-label">
-                <label htmlFor="username" className="login-label red-asterisk">
+                <label htmlFor="username" className="register-label red-asterisk">
                   UserName
                 </label>
               </div>
               <input
-                className="login-input"
+                className="register-input"
                 type="text"
                 id="username"
                 value={username}
@@ -201,13 +207,13 @@ function Login() {
             </div>
             <div className="input-unit">
               <div className="input-label">
-                <label htmlFor="password" className="login-label red-asterisk">
+                <label htmlFor="password" className="register-label red-asterisk">
                   Password
                 </label>
               </div>
               <input
                 disabled={!username}
-                className="login-input"
+                className="register-input"
                 type="password"
                 id="password"
                 value={password}
@@ -222,13 +228,13 @@ function Login() {
             </div>
             <div className="input-unit">
               <div className="input-label">
-                <label htmlFor="password2" className="login-label red-asterisk">
+                <label htmlFor="password2" className="register-label red-asterisk">
                   Confirm Password
                 </label>
               </div>
               <input
                 disabled={!username || !password}
-                className="login-input"
+                className="register-input"
                 type="password"
                 id="password2"
                 value={password2}
@@ -236,13 +242,13 @@ function Login() {
                 onChange={(e) => setPassword2(e.target.value)}
                 required
               />
-              {error && error.field === "username" && (
+              {error && error.field === "password2" && (
                 <div className="error-message">{error.message}</div>
               )}
             </div>
             <button
               type="submit"
-              className="login-btn"
+              className="register-btn"
               disabled={!username || !password || !password2}
             >
               Submit
@@ -263,9 +269,9 @@ function Login() {
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <h1 className="login-title">Sign Up</h1>
-      <div className="login-container">{renderTabs()}</div>
+    <form className="register-form" onSubmit={handleSubmit}>
+      <h1 className="register-title">Sign Up</h1>
+      <div className="register-container">{renderTabs()}</div>
 
       <div style={{ textAlign: "center", marginTop: "40px" }}>
         {/* Step indicators */}

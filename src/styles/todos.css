@@ -1,4 +1,8 @@
-  
+.delete-icon {
+  color: red;
+  cursor: pointer;
+}
+
   .mcui-checkbox,
   .mcui-radio {
     display: flex;

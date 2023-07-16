@@ -8,26 +8,26 @@
   }
   
   /* Style the input fields */
-  input {
+  /* input {
     padding: 10px;
     width: 100%;
     font-size: 17px;
     font-family: Raleway;
     border: 1px solid #aaaaaa;
   }
-  
+   */
   /* Mark input boxes that gets an error on validation: */
-  input.invalid {
+  /* input.invalid {
     background-color: #ffdddd;
-  }
+  } */
   
   /* Hide all steps by default: */
-  .tab {
+  /* .tab {
     display: none;
-  }
+  } */
   
   /* Make circles that indicate the steps of the form: */
-  .step {
+  /* .step {
     height: 15px;
     width: 15px;
     margin: 0 2px;
@@ -36,14 +36,108 @@
     border-radius: 50%;
     display: inline-block;
     opacity: 0.5;
-  }
+  } */
   
   /* Mark the active step: */
-  .step.active {
+  /* .step.active {
     opacity: 1;
-  }
+  } */
   
   /* Mark the steps that are finished and valid: */
-  .step.finish {
+  /* .step.finish {
     background-color: #04AA6D;
+  } */
+
+  .error-message {
+    color: red;
+    margin-top: 5px;
+    font-size: 12px;
   }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #5d5555;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .input-unit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .input-label {
+    flex-basis: 35%;
+  }
+  
+  .red-asterisk::after {
+    content: "*";
+    color: red;
+    margin-left: 4px;
+  }
+  
+  .register-form {
+    width: 500px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register-title {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  .register-label {
+    color: #3e8e41;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .register-input[type="text"],
+  .register-input[type="tel"],
+  .register-input[type="email"],
+  .register-input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  .register-btn[type="button"],
+  .register-btn[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+  }
+  
+  .register-btn[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  .register-container[style] {
+    margin-top: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  

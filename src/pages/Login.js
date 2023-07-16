@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./styles/Login.css";
+import "../styles/Login.css";
 import { json, useNavigate } from "react-router-dom";
 import { wait } from "@testing-library/user-event/dist/utils";
 function Login() {
