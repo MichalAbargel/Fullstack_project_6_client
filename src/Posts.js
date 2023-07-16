@@ -5,11 +5,16 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 function Posts() {
   const params = useParams();
   const [posts, setPosts] = useState([]);
-  const [error, setError] = useState("");
+  // fileds for add post
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [post, setPost] = useState(null);
+  // fileds for edit post
+  const [isEditing, setIsEditing] = useState(false);
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [editBody, setEditBody] = useState("");
 
   const getPosts = async () => {
     try {
@@ -49,19 +54,40 @@ function Posts() {
               <div class="container text-center">
                 <div class="row">
                   <div class="col-6">
-                    <h5 className="card-title">{post.title}</h5>
+                    {isEditing && selectedPostId === post.id ? (
+                      <textarea
+                        className="card-title"
+                        type="text"
+                        value={editTitle}
+                        onChange={(e) => {
+                          // Handle changes to the title input
+                          setEditTitle(e.target.value);
+                          console.log(e.target.value);
+                        }}
+                      />
+                    ) : (
+                      <h5 className="card-title">{post.title}</h5>
+                    )}
                   </div>
                   <div class="col-1">
                     <button
                       class="button button-delete"
                       onClick={(e) => {
                         e.preventDefault();
-                        console.log(post.id);
+                        if (isEditing && selectedPostId === post.id) {
+                          saveChanges();
+                        } else {
+                          handleEditClick(post.id);
+                        }
                       }}
                     >
                       <span class="mdi mdi-delete mdi-24px"></span>
                       <span class="mdi mdi-delete-empty mdi-24px"></span>
-                      <i class="fa fa-edit"></i>
+                      {isEditing && selectedPostId === post.id ? (
+                        <i className="fa fa-save"></i>
+                      ) : (
+                        <i className="fa fa-edit"></i>
+                      )}
                     </button>
                   </div>
                   <div key={post.id} class="col-1">
@@ -80,8 +106,19 @@ function Posts() {
                   </div>
                 </div>
               </div>
-              <p className="post-prg">{post.body}</p>
-              <div></div>
+              {isEditing && selectedPostId === post.id ? (
+                <textarea
+                  className="card-title"
+                  type="text"
+                  value={editBody}
+                  onChange={(e) => {
+                    // Handle changes to the title input
+                    setEditBody(e.target.value);
+                  }}
+                />
+              ) : (
+                <p className="post-prg">{post.body}</p>
+              )}
               <Link to={String(post.id)} className="btn btn-danger">
                 Comments
               </Link>
@@ -93,6 +130,49 @@ function Posts() {
       return "";
     }
   }
+
+  const handleEditClick = (postId) => {
+    setSelectedPostId(postId);
+    const post = posts.find((post) => post.id === postId);
+    // reset editPost
+    setEditTitle(post.title);
+    setEditBody(post.body);
+    // enable editing
+    setIsEditing(true);
+  };
+
+  const saveChanges = async () => {
+    setIsEditing(false);
+    const postToUpdate = { title: editTitle, body: editBody };
+    console.log(postToUpdate);
+    console.log("try to update post");
+    if (selectedPostId !== null) {
+      console.log("try to make PUT request to update post");
+      try {
+        const response = await fetch(
+          `http://localhost:3500/api/posts/${selectedPostId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(postToUpdate),
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        if (data !== null) {
+          console.log(data);
+        }
+      } catch (error) {
+        console.log("Error adding Post");
+      }
+    }
+    //update posts
+    getPosts();
+  };
 
   function handleAddPost() {
     console.log("enter add function");
@@ -120,7 +200,7 @@ function Posts() {
           console.log(data);
         }
       } catch (error) {
-        setError("Error adding Post");
+        console.log("Error adding Post");
       }
       setShowForm(false);
       // update posts on screen

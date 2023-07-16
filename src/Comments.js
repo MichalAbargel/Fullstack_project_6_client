@@ -6,9 +6,15 @@ function Comments() {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const [post, setPost] = useState({});
+  // fileds to add new comment
   const [addCommentFlag, setAddCommentFlag] = useState(false);
   const [commentBody, setCommentBody] = useState();
   const [newComment, setNewComment] = useState(null);
+  // fileds for edit comment
+  const [isEditing, setIsEditing] = useState(false);
+  const [selectedCommentId, setSelectedCommentId] = useState(null);
+  const [editName, setEditName] = useState("");
+  const [editBody, setEditBody] = useState("");
 
   const getComments = async () => {
     try {
@@ -126,19 +132,39 @@ function Comments() {
                   <div class="container text-center">
                     <div class="row">
                       <div class="col-8">
-                        <h5 className="card-title">{comment.name}</h5>
+                        {isEditing && selectedCommentId === comment.id ? (
+                          <textarea
+                            className="card-title"
+                            type="text"
+                            value={editName}
+                            onChange={(e) => {
+                              // Handle changes to the title input
+                              setEditName(e.target.value);
+                            }}
+                          />
+                        ) : (
+                          <h5 className="card-title">{comment.name}</h5>
+                        )}
                       </div>
                       <div class="col-1">
                         <button
                           class="button button-delete"
                           onClick={(e) => {
                             e.preventDefault();
-                            console.log(comment.id);
+                            if (isEditing && selectedCommentId === comment.id) {
+                              saveChanges();
+                            } else {
+                              handleEditClick(comment.id);
+                            }
                           }}
                         >
                           <span class="mdi mdi-delete mdi-24px"></span>
                           <span class="mdi mdi-delete-empty mdi-24px"></span>
-                          <i class="fa fa-edit"></i>
+                          {isEditing && selectedCommentId === post.id ? (
+                            <i className="fa fa-save"></i>
+                          ) : (
+                            <i className="fa fa-edit"></i>
+                          )}
                         </button>
                       </div>
                       <div class="col-1">
@@ -157,8 +183,19 @@ function Comments() {
                       </div>
                     </div>
                   </div>
-
-                  <p>{comment.body}</p>
+                  {isEditing && selectedCommentId === comment.id ? (
+                    <textarea
+                      className="card-title"
+                      type="text"
+                      value={editBody}
+                      onChange={(e) => {
+                        // Handle changes to the title input
+                        setEditBody(e.target.value);
+                      }}
+                    />
+                  ) : (
+                    <p>{comment.body}</p>
+                  )}
 
                   <ul className="list-inline d-sm-flex my-0">
                     <li className="list-inline-item g-mr-20">
@@ -295,6 +332,49 @@ function Comments() {
       </div>
     );
   }
+
+  const handleEditClick = (commentId) => {
+    setSelectedCommentId(commentId);
+    const comment = comments.find((comment) => comment.id === commentId);
+    // copy fileds of the comment to edit
+    setEditName(comment.name);
+    setEditBody(comment.body);
+    // enable editing
+    setIsEditing(true);
+  };
+
+  const saveChanges = async () => {
+    setIsEditing(false);
+    const commentToUpdate = { name: editName, body: editBody };
+    console.log(commentToUpdate);
+    console.log("try to update post");
+    if (selectedCommentId !== null) {
+      console.log("try to make PUT request to update comment");
+      try {
+        const response = await fetch(
+          `http://localhost:3500/api/comments/${selectedCommentId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(commentToUpdate),
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        if (data !== null) {
+          console.log(data);
+        }
+      } catch (error) {
+        console.log("Error adding Post");
+      }
+    }
+    //update posts
+    getComments();
+  };
 
   return (
     <div className="background">
