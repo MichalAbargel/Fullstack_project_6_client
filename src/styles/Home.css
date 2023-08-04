@@ -1,0 +1,14 @@
+.Home {
+    text-align: center;
+  }
+  
+  .Home-header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+  }
+  
+  .Home-main {
+    padding: 20px;
+  }
+  

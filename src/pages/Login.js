@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "../styles/Login.css";
 import { json, useNavigate } from "react-router-dom";
 import { wait } from "@testing-library/user-event/dist/utils";
-function Login() {
+
+
+function Login({ handleLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -57,13 +59,18 @@ function Login() {
         setLoggedInUser(user);
         //update localStoarge
         localStorage.setItem("user", JSON.stringify(user)); ////////////////////?
-        console.log("naviget users");
-        setLogin(false); //DELETE IT?
-        navigate(`/users/${user.id}`);
+        console.log("naviget users");        
+        navigate('/');
+
+        // setLogin(false); //DELETE IT?
+        handleLogin();
+
       })
       .catch((error) => {
         console.log("ERROR");
       });
+
+
   };
 
   return (

@@ -1,60 +1,71 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
-import Menu from "./Nav";
+// import { useEffect, useState } from "react";
+// import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
+// import Menu from "./Nav";
 
-/*--------------------
-  Items
-  --------------------*/
-const items = [
-  {
-    name: "Posts",
-    color: "#f44336",
-    href: "posts",
-  },
-  {
-    name: "Info",
-    color: "#e91e63",
-    href: "info",
-  },
-  {
-    name: "Todos",
-    color: "#673ab7",
-    href: "todos",
-  },
-  {
-    name: "Logout",
-    color: "#f44336",
-    href: "/login",
-  },
-];
+// /*--------------------
+//   Items
+//   --------------------*/
+// const guestItems = [
+//   {
+//     name: "Posts",
+//     color: "#f44336",
+//     href: "/posts",
+//   },
+//   {
+//     name: "Info",
+//     color: "#e91e63",
+//     href: "/info",
+//   },
+// ];
 
-function Users() {
-  const navigate = useNavigate();
-  const params = useParams();
-  const [name, setName] = useState();
+// const userItems = [
+//   {
+//     name: "Posts",
+//     color: "#f44336",
+//     href: "/users/:userid/posts",
+//   },
+//   {
+//     name: "Info",
+//     color: "#e91e63",
+//     href: "/users/:userid/info",
+//   },
+//   {
+//     name: "Todos",
+//     color: "#673ab7",
+//     href: "/users/:userid/todos",
+//   },
+// ];
 
-  useEffect(() => {
-    //ID or the whole user?
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
-    if (!user || params.userid != user.id) {
-      navigate("/login");
-    } else {
-      setName(user.name);
-    }
-  }, []);
+// function Users() {
+//   const navigate = useNavigate();
+//   const params = useParams();
+//   const [name, setName] = useState();
+//   const [isConnected, setIsConnected] = useState(false); // Define the 'isConnected' variable
 
-  return (
-    <div className="background home-page">
-      <nav>
-        <div className="background">
-          <Menu items={items} />
-          <h1>{name}</h1>
-        </div>
-      </nav>
-      <Outlet />
-    </div>
-  );
-}
+//   useEffect(() => {
+//     const user = JSON.parse(localStorage.getItem("user"));
+//     if (!user || params.userid !== user.id) {
+//       navigate("/login");
+//     } else {
+//       setName(user.name);
+//       setIsConnected(true); // Set 'isConnected' to true if the user is logged in
+//     }
+//   }, []);
 
-export default Users;
+//   // Select the appropriate menu items based on the user's connection status
+//   const menuItems = isConnected ? userItems : guestItems;
+
+//   return (
+//     <div className="background home-page">
+//       <nav>
+//         <div className="background">
+//           <Menu items={menuItems} />
+//           <h1>{name}</h1>
+//         </div>
+//       </nav>
+//       <Outlet />
+//     </div>
+//   );
+// }
+
+// export default Users;
