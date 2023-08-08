@@ -1,0 +1,157 @@
+.some {
+    /* תכולת האלמנט תהיה בתוך תיבה עם מרווחים של 3 רמות */
+    /* padding: 3rem !important; */
+    /* צבע רקע של התיבה יהיה צבע אפור בהיר */
+    background-color: #f9f9fa;
+
+      
+  }
+  
+  
+  /* סגנון עבור אלמנט body */
+  .some body {
+    /* צבע רקע של הדף יהיה צבע לבן */
+    background-color: #fff;
+  }
+  
+  /* סגנון עבור אלמנט .information */
+  .some .information {
+    /* מרווחים של 12 פיקסלים משני הצידים */
+    padding: 12px;
+    /* תצוגה באופן אופקי של התוכן */
+    display: flex;
+  }
+  
+  /* סגנון עבור אלמנט .profile */
+  .some .profile {
+    /* האלמנט יקח 35% מרוחב האלמנט האב */
+    flex: 0 0 35%;
+    /* מרווח ימני של 5% */
+    margin-right: 5%;
+    /* גוון רקע עם התחלת הגרדיאנט בצבע ורוד וסיום בצבע כתום */
+    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #ee5a6f, #f29263);
+  }
+  
+  /* סגנון עבור אלמנט .details */
+  .some .details {
+    /* האלמנט יקח את כל המקום הפנוי באלמנט האב */
+    flex: 1;
+    /* מסגרת בצבע כתום עם רדיוס מעוגלות של 10 פיקסלים */
+    border: 1px solid orange;
+    border-radius: 10px;
+    /* מרווח של 10 פיקסלים בין התוכן למסגרת */
+    padding: 10px;
+  }
+  
+  /* ניתן להוסיף עוד סגנונות כאן עבור אלמנטים נוספים */
+  
+
+
+    .user-card-full {
+    overflow: hidden;
+}
+
+.card-user {
+    border-radius: 5px;
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    border: none;
+    margin-bottom: 30px;
+}
+
+.m-r-0 {
+    margin-right: 0;
+}
+
+.m-l-0 {
+    margin-left: 0;
+}
+
+.user-card-full .user-profile {
+    border-radius: 5px 0 0 5px;
+}
+
+.bg-c-lite-green {
+    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #ee5a6f, #f29263);
+}
+
+.user-profile {
+    padding: 20px 0;
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.m-b-25 {
+    margin-bottom: 25px;
+}
+
+.img-radius {
+    border-radius: 5px;
+}
+
+h6 {
+    font-size: 14px;
+}
+
+.card-user .card-block p {
+    line-height: 25px;
+}
+
+@media only screen and (min-width: 1400px) {
+    p {
+        font-size: 14px;
+    }
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.text-muted {
+    color: #919aa3 !important;
+}
+
+.f-w-600 {
+    font-weight: 600;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.user-card-full .social-link li {
+    display: inline-block;
+}
+
+.user-card-full .social-link li a {
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.col-sm-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}

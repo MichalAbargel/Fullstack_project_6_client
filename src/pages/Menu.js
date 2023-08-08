@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 
-import "../styles/nav.css";
+import "../styles/Menu.css";
 
 function Menu({ items }) {
   const $root = React.useRef();
   const $indicator1 = React.useRef();
   const $indicator2 = React.useRef();
   const [active, setActive] = useState(0);
-  const navigate = useNavigate();
 
   const animate = () => {
     const menuOffset = $root.current.getBoundingClientRect();

@@ -11,10 +11,6 @@ import Cart from "./pages/Cart";
 import Categories from "./pages/Categories";
 import Menu from "./pages/Menu";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/comment.css";
-import "./styles/post.css";
-import "./styles/todos.css";
-import "./styles/gallery.css";
 import "./styles/userInfo.css";
 import "./styles/deleteBtn.css";
 
